@@ -1,11 +1,11 @@
 import ReactDOMServer from 'react-dom/server';
-import rechartElement from '../../components/Chart/Chart'
+import { Chart } from '../../components/Chart/Chart'
 import { parse } from 'node-html-parser'
 import type {NextApiRequest, NextApiResponse} from "next";
 
-function recharts2svgString() {
+function recharts2svgString(data: any) {
 
-    const htmlStringRoot = ReactDOMServer.renderToString(rechartElement())
+    const htmlStringRoot = ReactDOMServer.renderToString(Chart(data))
     const parsedSting = parse(htmlStringRoot)
     const svgString = parsedSting?.querySelector("svg")?.toString()
 
@@ -17,10 +17,12 @@ const RechartsToImageSvg = async (
     res: NextApiResponse
 ): Promise<void> => {
 
+    const { data } = req.body
+
     res.writeHead(200, {
         "Content-Type": "image/svg+xml",
     });
-    res.write(recharts2svgString())
+    res.write(recharts2svgString(data))
     res.end()
 };
 
