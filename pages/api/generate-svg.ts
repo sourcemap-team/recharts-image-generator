@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server';
 import { ChartName } from 'types'
-import { Chart } from '@components/Chart/Chart'
 import PortfolioStructure from '@components/Chart/PortfolioStructure'
+import PortfolioTotalNavAndReturnChart from '@components//Chart/PortfolioTotalNavAndReturnChart'
 
 import { parse } from 'node-html-parser'
 import type {NextApiRequest, NextApiResponse} from "next";
@@ -14,7 +14,7 @@ function recharts2svgString(data: any, chartName: string) {
             htmlStringRoot = ReactDOMServer.renderToString(PortfolioStructure(data))
             break;
         case ChartName.HABWeek:
-            htmlStringRoot = ReactDOMServer.renderToString(Chart(data))
+            htmlStringRoot = ReactDOMServer.renderToString(PortfolioTotalNavAndReturnChart(data))
             break;
     }
 

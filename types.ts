@@ -3,6 +3,20 @@ export enum ChartName {
   HABWeek = "hab-week-report",
 }
 
+export interface PortfolioChartDot {
+     nav: number
+     nav_historical: number
+     deposit: number
+     withdrawal: number
+     portfolio: number
+     benchmark: number
+     date: Date
+}
+
+export interface HABWeekChart {
+    dots: PortfolioChartDot[]
+}
+
 export interface PortfolioStructureRow {
   short_name: string;
   full_name: string;
